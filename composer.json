@@ -1,0 +1,21 @@
+{
+	"name": "ioalessio/geocoderbundle",
+	"type": "symfony-bundle",
+	"description": "Geocode implementation and a friendly widget for Symfony2 Application",
+	"keywords": [ "gmaps",  "gmap api", "geocoder", "latitude", "longitude", "Symfony2 Form" ],
+	"license": "LGPL",
+	"authors": [
+		{
+			"name": "Alessio",
+			"email": "io.alessio@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0",
+		"symfony/framework-bundle": ">=2.1,<2.3-dev"
+	},
+	"autoload": {
+		"psr-0": { "Io\\GeocoderBundle": "" }
+	},
+	"target-dir": "Io/GeocoderBundle"
+}

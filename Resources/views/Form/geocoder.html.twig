@@ -1,0 +1,20 @@
+{% block geocoder_widget %}
+{% spaceless %}
+
+    <div id="{{ form.vars['id'] }}_maps" class="geocoder_maps_widget"
+     data-suggest="{{ form.suggest.vars['id'] }}"
+     data-address="{{ form.latitude.vars['id'] }}"
+     data-latitude="{{ form.longitude.vars['id'] }}"
+     data-longitude="{{ form.address.vars['id'] }}"
+     data-link="http://maps.googleapis.com/maps/api/geocode/json"         
+         ></div>
+    {{ form_widget(form.suggest) }}
+    {{ form_widget(form.latitude) }}
+    {{ form_widget(form.longitude) }}
+    {{ form_widget(form.address) }}
+    {# i can also include maps, clicking the map update the form #}
+    {{ form_rest(form) }}
+    
+</div>    
+{% endspaceless %}
+{% endblock geocoder_widget %}
