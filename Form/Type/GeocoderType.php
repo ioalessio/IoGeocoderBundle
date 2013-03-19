@@ -17,9 +17,9 @@ class GeocoderType extends AbstractType
     {
         $builder
                 ->add('address', 'text')
-                ->add('latitude', 'text')
-                ->add('longitude', 'text')
-                ->add('autosuggest', 'text') 
+                ->add('latitude', 'hidden')
+                ->add('longitude', 'hidden')
+                ->add('suggest', 'text') 
                  ;
     }
 
@@ -38,7 +38,7 @@ class GeocoderType extends AbstractType
 
     public function getName()
     {
-        return 'geocoder_selector';
+        return 'geocoder';
     }
     
 

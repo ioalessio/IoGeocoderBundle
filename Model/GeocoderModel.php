@@ -2,6 +2,7 @@
 
 namespace Io\GeocoderBundle\Model;
 
+use Symfony\Component\Validator\Constraint as Assert;
 use Io\GeocoderBundle\Interfaces\GeocoderInterface;
 
 /**
@@ -11,10 +12,26 @@ use Io\GeocoderBundle\Interfaces\GeocoderInterface;
  */
 class GeocoderModel {
     
-    //protected $address;
-    //protected $latitude;
-    //protected $longitude;
-    //protected $suggest;
+    /**
+     * @Assert\Type("type"=string")
+     */
+    protected $address;
+    
+    /**
+     * @Assert\Type("type"=float")
+     */
+    protected $latitude;
+    
+    /**
+     * @Assert\Type("type"=float")
+     */
+    protected $longitude;
+    
+    /**
+     * @Assert\Type("type"=string")
+     */
+    protected $suggest;
+    
     protected $entity;
     
     public function __construct(GeocoderInterface $entity) {
@@ -26,6 +43,7 @@ class GeocoderModel {
     }
 
     public function setAddress($address) {
+        $this->address = $address;
         $this->getEntity()->setAddress($address);
     }
 
@@ -34,6 +52,7 @@ class GeocoderModel {
     }
 
     public function setLatitude($latitude) {
+        $this->latitude = $latitude;
         $this->getEntity()->setLatitude($latitude);
     }
 
@@ -42,6 +61,7 @@ class GeocoderModel {
     }
 
     public function setLongitude($longitude) {
+        $this->longitude = $longitude;
         $this->getEntity()->setLongitude($longitude);
     }
 
@@ -50,6 +70,7 @@ class GeocoderModel {
     }
 
     public function setSuggest($suggest) {
+        $this->suggest = $suggest;
         $this->getEntity()->setSuggest($suggest);
     }
     
