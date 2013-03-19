@@ -78,3 +78,24 @@ $form = $this->createFormBuilder($task, $entity)
     ->add('geocoder', 'geocoder')
     ->getForm();
 ```
+
+
+
+CUSTOMIZE:
+if you want override native functions you can extend it creating a new bundle
+
+```php
+<?php
+
+namespace My\GeocoderBundle;
+
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+class MyGeocoderBundle extends Bundle
+{
+    public function getParent()
+    {
+        return 'IoGeocoderBundle';
+    }
+}
+```
