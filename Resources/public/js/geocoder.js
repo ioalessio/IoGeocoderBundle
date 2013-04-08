@@ -16,12 +16,27 @@ $(function(){
         
         var addr = $($(el).attr('data-address'));
         
+        var lat = $("#" + $(el).attr('data-latitude') ).val();        
+        var lng = $("#" + $(el).attr('data-longitude') ).val();    
+
+                
         //inizialize maps
         //var el = $(this);    
-        var map = init_maps(el.attr('id'));    
+        var map = init_maps(el.attr('id'));  
         
-        //events
-        var oldmarker;        
+        var marker = null;
+        if(lat && lng)
+        {          
+            var latlng = new google.maps.LatLng(parseFloat(lat.replace(",", ".")), parseFloat(lng.replace(",", ".")));
+            marker = new google.maps.Marker({
+                      position: latlng,
+                      draggable: true,
+                      map: map
+                });        
+                console.log(latlng);
+        }
+        var oldmarker = marker;        
+            
         google.maps.event.addListener(map, 'click', function(event) { 
             //remove old markers
             if(oldmarker)
@@ -45,6 +60,9 @@ $(function(){
                     map.setCenter(marker.position);
               });
         });
+        
+    
+        
         //implementing suggest 
         $("#" + $(el).attr('data-suggest') ).on('change', function(event){
             //create a dropdown
