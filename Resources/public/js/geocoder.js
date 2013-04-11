@@ -33,7 +33,7 @@ $(function(){
                       draggable: true,
                       map: map
                 });        
-                console.log(latlng);
+              map.setCenter(marker.position);
         }
         var oldmarker = marker;        
             
