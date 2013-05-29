@@ -1,20 +1,23 @@
 {% block geocoder_widget %}
 {% spaceless %}
+    {{ form_errors(form) }}
+    <div class="control-group">
+        <div id="{{ form.vars['id'] }}_maps" class="geocoder_maps_widget" style="height: 300px"
+         data-suggest="{{ form.suggest.vars['id'] }}"
+         data-longitude="{{ form.latitude.vars['id'] }}"
+         data-latitude="{{ form.longitude.vars['id'] }}"
+         data-address="{{ form.address.vars['id'] }}"
+         data-link="{{ form.vars['url']}}"></div>
+    </div>        
 
-    <div id="{{ form.vars['id'] }}_maps" class="geocoder_maps_widget" style="height: 300px"
-     data-suggest="{{ form.suggest.vars['id'] }}"
-     data-longitude="{{ form.latitude.vars['id'] }}"
-     data-latitude="{{ form.longitude.vars['id'] }}"
-     data-address="{{ form.address.vars['id'] }}"
-     data-link="http://maps.googleapis.com/maps/api/geocode/json"         
-         ></div>
-    {{ form_row(form.suggest) }}
-    {{ form_row(form.address) }}
-    {{ form_row(form.latitude) }}
-    {{ form_row(form.longitude) }}
 
-    {# i can also include maps, clicking the map update the form #}
-    {{ form_rest(form) }}
+    {# form should be integrated into map #}
+        {{ form_row(form.suggest) }}
+        {{ form_row(form.address) }}
+        
+        {{ form_row(form.latitude) }}
+        {{ form_row(form.longitude) }}
+        {{ form_rest(form) }}
    
 {% endspaceless %}
 {% endblock geocoder_widget %}

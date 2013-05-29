@@ -1,0 +1,4 @@
+io_geocoder_action:
+    pattern:  /geocoder.json
+    methods:  [GET]
+    defaults: { _controller: IoGeocoderBundle:Geocoder:index }

@@ -1,5 +1,6 @@
 services:
     io_geocoder.type.geocoder:
         class: Io\GeocoderBundle\Form\Type\GeocoderType
+        arguments: ["@router"]
         tags:
             - { name: form.type, alias: geocoder }

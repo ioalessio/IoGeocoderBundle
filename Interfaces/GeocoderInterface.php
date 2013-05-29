@@ -5,8 +5,6 @@ use  Io\GeocoderBundle\Model\GeocoderModel;
 
 interface GeocoderInterface {
     
-    public function getGeocoder(); 
-    public function setGeocoder(GeocoderModel $geocoder = null); 
     
     public function getAddress();
     public function setAddress($address);

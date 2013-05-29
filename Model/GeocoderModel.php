@@ -5,6 +5,7 @@ namespace Io\GeocoderBundle\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Io\GeocoderBundle\Interfaces\GeocoderInterface;
 
+
 /**
  * Form Type read this Model
  * This model must be initialized with Entity 
@@ -35,16 +36,7 @@ class GeocoderModel {
      */
     protected $suggest;
     
-    protected $entity;
-    
-    public function __construct(GeocoderInterface $entity) {
-        $this->entity = $entity;
-        $this->latitude = $entity->getLatitude();
-        $this->longitude = $entity->getLongitude();
-        $this->suggest = $entity->getSuggest();
-        $this->address = $entity->getAddress();
-    }
-    
+   
     public function getAddress() {
         return $this->getEntity()->getAddress();
     }
@@ -80,18 +72,6 @@ class GeocoderModel {
         $this->suggest = $suggest;
         $this->getEntity()->setSuggest($suggest);
     }
-    
-    public function getEntity() {
-        return $this->entity;
-    }
-
-    public function setEntity($entity) {
-        $this->entity = $entity;
-    }
-
-
-
-
     
     
 }

@@ -42,41 +42,60 @@ output='js/script.js'
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 ```
-
-
+5) add geocode routing
+```yaml
+io_geocoder_bundle:
+    resource: "@IoGeocoderBundle/Resources/config/routing.yml"
+```
 HOW TO USE:
  ========================
 
-1) implement GeocoderInterface on your entity
+1) create your GeocoderInterface on your entity
 ```php
-
-use Io\GeocoderBundle\Model\GeocoderModel;
+namespace My\Bundle\Entity;
 use Io\GeocoderBundle\Interfaces\GeocoderInterface;
 
-class MyClass implements GeocoderInterface {
+class Geo implements GeocoderInterface {
 
 protected $suggest;
-
 protected $latitude;
-
 protected $longitude;
-
 protected $address;
-
 protected $geocoder;
 
-public function __construct() {
-    $this->geocoder = new GeocoderModel($this);
-}
+protected $myfield;
+
+
 //getter and setters
 }
 ```
-2) Create form inside your controller
+
+2) Create form class
 ```php
-$entity = new MyClass();
-$form = $this->createFormBuilder($task, $entity)
-    ->add('geocoder', 'geocoder')
-    ->getForm();
+namespace My\Bundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class GeoType extends AbstractType {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder->add('myfield', 'text');        
+    }
+    public function setDefaultOptions(OptionsResolverInterface $resolver) {
+        $resolver->setDefaults(array(
+            'data_class' => 'My\Bundle\Entity\Geo'
+        ));
+    }
+    
+    public function getParent() {
+        return 'geocoder';
+    }    
+
+    public function getName() {
+        return 'my_geo';
+    }
+}
 ```
 
 

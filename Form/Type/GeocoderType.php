@@ -6,13 +6,35 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 class GeocoderType extends AbstractType
 {
-   
+    /**
+     * @var \Symfony\Component\Routing\RouterInterface
+     */    
+    private $router;
+    
+
+    /**
+     * @param ObjectManager $om
+     * @param RouterInterface $router
+     */
+    public function __construct(RouterInterface $router)
+    {
+        $this->router = $router;
+        
+    }    
+    
+    public function buildView(FormView $view, FormInterface $form, array $options) {
+        parent::buildView($view, $form, $options);
+       
+        $view->vars['url'] = $this->router->generate('io_geocoder_action');         
+            
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
