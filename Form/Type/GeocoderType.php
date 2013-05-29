@@ -32,8 +32,9 @@ class GeocoderType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options) {
         parent::buildView($view, $form, $options);
        
-        $view->vars['url'] = $this->router->generate('io_geocoder_action');         
-            
+        //$view->vars['url'] = $this->router->generate('io_geocoder_action');         
+          
+        $view->vars['url'] = "http://maps.googleapis.com/maps/api/geocode/json";         
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
