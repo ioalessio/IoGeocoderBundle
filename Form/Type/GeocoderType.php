@@ -30,12 +30,17 @@ class GeocoderType extends AbstractType
     }    
     
     public function buildView(FormView $view, FormInterface $form, array $options) {
-        parent::buildView($view, $form, $options);
-       
-        //$view->vars['url'] = $this->router->generate('io_geocoder_action');         
-          
-        $view->vars['url'] = "http://maps.googleapis.com/maps/api/geocode/json";         
+        parent::buildView($view, $form, $options);   
+        
+        if($options['local_route']) {
+            $url = $this->router->generate($options['local_route']);         
+        }
+        else {
+            $url = $options['url'];
+        }
+        $view->vars['url'] = $url;   
     }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -48,7 +53,10 @@ class GeocoderType extends AbstractType
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
+        $resolver->setOptional(array('local_route', 'url'));
         $resolver->setDefaults(array(
+            'local_route'  => 'io_geocoder_action',
+            'url' => "http://maps.googleapis.com/maps/api/geocode/json",
             'data_class' => 'Io\GeocoderBundle\Model\GeocoderModel',
             'invalid_message' => 'X does not exists'            
         ));
