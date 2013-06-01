@@ -1,7 +1,6 @@
 <?php
 
 namespace Io\GeocoderBundle\Interfaces;
-use  Io\GeocoderBundle\Model\GeocoderModel;
 
 interface GeocoderInterface {
     
