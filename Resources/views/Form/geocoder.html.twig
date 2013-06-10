@@ -2,21 +2,26 @@
 {% spaceless %}
     {{ form_errors(form) }}
     <div class="control-group">
-        <div id="{{ form.vars['id'] }}_maps" class="geocoder_maps_widget" style="height: 300px"
-         data-suggest="{{ form.suggest.vars['id'] }}"
-         data-longitude="{{ form.latitude.vars['id'] }}"
-         data-latitude="{{ form.longitude.vars['id'] }}"
-         data-address="{{ form.address.vars['id'] }}"
-         data-link="{{ form.vars['url']}}"></div>
+            <div class="controls">
+                <div id="{{ form.vars['id'] }}_maps" class="geocoder_maps_widget" style="height: 200px"
+                 data-suggest="{{ form.suggest.vars['id'] }}"
+                 data-longitude="{{ form.latitude.vars['id'] }}"
+                 data-latitude="{{ form.longitude.vars['id'] }}"
+                 data-address="{{ form.address.vars['id'] }}"
+                 data-link="{{ form.vars['url']}}"></div>
+            </div>
     </div>        
 
 
     {# form should be integrated into map #}
         {{ form_row(form.suggest) }}
+
+
         {{ form_row(form.address) }}
-        
+        <div class="hidden">
         {{ form_row(form.latitude) }}
         {{ form_row(form.longitude) }}
+        </div>
         {{ form_rest(form) }}
    
 {% endspaceless %}
